@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f2ca33e7-af51-4ab0-8251-81f535295335" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/09-AWS-ALB-Application-LoadBalancer-Basic/private-key/terraform-key.pem" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/test2/backen.hcl" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2mQIb4m18VlTxXEMzOr0yTnoa0R" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/bhuang/code/study/Bhuang-AWS-Terraform/src/test2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test2" />
+      <recent name="$PROJECT_DIR$/src/05-Terraform-Loops-MetaArguments-SplatOperator/05-02-MetaArgument-for_each" />
+      <recent name="$PROJECT_DIR$/src/05-Terraform-Loops-MetaArguments-SplatOperator/05-01-MetaArgument-Count-For-Loops-Lists-Maps" />
+      <recent name="$PROJECT_DIR$/src/09-AWS-ALB-Application-LoadBalancer-Basic" />
+      <recent name="$PROJECT_DIR$/src/teat" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/teat" />
+      <recent name="$PROJECT_DIR$/src/doc" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="lua.app" factoryName="Lua Application">
+      <option name="program" value="lua" />
+      <option name="file" value="" />
+      <option name="workingDir" value="$PROJECT_DIR$/src/main/resources" />
+      <option name="debuggerType" value="2" />
+      <option name="params" value="" />
+      <option name="charset" value="UTF-8" />
+      <option name="showConsole" value="true" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f2ca33e7-af51-4ab0-8251-81f535295335" name="Changes" comment="" />
+      <created>1727002454112</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727002454112</updated>
+      <workItem from="1727002455697" duration="181766000" />
+      <workItem from="1729157087937" duration="611000" />
+      <workItem from="1729496273250" duration="4619000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
