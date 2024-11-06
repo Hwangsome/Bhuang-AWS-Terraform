@@ -4,11 +4,58 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f2ca33e7-af51-4ab0-8251-81f535295335" name="Changes" comment="" />
+    <list default="true" id="f2ca33e7-af51-4ab0-8251-81f535295335" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/buildspec-dev.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/buildspec-stag.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/app1-install.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c1-versions.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c10-01-ALB-application-loadbalancer-variables.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c10-02-ALB-application-loadbalancer.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c10-03-ALB-application-loadbalancer-outputs.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c11-acm-certificatemanager.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c12-route53-dnsregistration.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c13-01-autoscaling-with-launchtemplate-variables.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c13-02-autoscaling-launchtemplate-resource.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c13-03-autoscaling-resource.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c13-04-autoscaling-with-launchtemplate-outputs.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c13-05-autoscaling-notifications.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c13-06-autoscaling-ttsp.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c13-07-autoscaling-scheduled-actions.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c2-generic-variables.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c3-local-values.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c4-01-vpc-variables.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c4-02-vpc-module.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c4-03-vpc-outputs.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c5-01-securitygroup-variables.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c5-02-securitygroup-outputs.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c5-03-securitygroup-bastionsg.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c5-04-securitygroup-privatesg.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c5-05-securitygroup-loadbalancersg.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c6-01-datasource-ami.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c6-02-datasource-route53-zone.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c7-01-ec2instance-variables.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c7-02-ec2instance-outputs.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c7-03-ec2instance-bastion.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c8-elasticip.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/c9-nullresource-provisioners.tf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/dev.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/dev.tfvars" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/private-key/terraform-key.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/stag.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/stag.tfvars" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/Git-Repo-Files/terraform-manifests/terraform.tfvars" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/22-IaC-DevOps-using-AWS-CodePipeline/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/src/my-code-deploy" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/09-AWS-ALB-Application-LoadBalancer-Basic/private-key/terraform-key.pem" root0="SKIP_INSPECTION" />
@@ -27,28 +74,33 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/bhuang/code/study/Bhuang-AWS-Terraform/src/test2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Terraform.terraform get in code-deploy.executor": "Run",
+    "Terraform.terraform get in my-code-deploy.executor": "Run",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/bhuang/code/Bhuang-AWS-Terraform/src",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ruby.rails.projectView.checked": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/test2" />
       <recent name="$PROJECT_DIR$/src/05-Terraform-Loops-MetaArguments-SplatOperator/05-02-MetaArgument-for_each" />
       <recent name="$PROJECT_DIR$/src/05-Terraform-Loops-MetaArguments-SplatOperator/05-01-MetaArgument-Count-For-Loops-Lists-Maps" />
       <recent name="$PROJECT_DIR$/src/09-AWS-ALB-Application-LoadBalancer-Basic" />
-      <recent name="$PROJECT_DIR$/src/teat" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -68,6 +120,14 @@
       <method v="2" />
     </configuration>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -79,10 +139,15 @@
       <workItem from="1727002455697" duration="181766000" />
       <workItem from="1729157087937" duration="611000" />
       <workItem from="1729496273250" duration="4619000" />
+      <workItem from="1730290447353" duration="8829000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
