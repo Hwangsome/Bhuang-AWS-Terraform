@@ -1,164 +1,204 @@
-module "code-deploy" {
-  source  = "cloudposse/code-deploy/aws"
-  version = "0.2.3"
-  # insert the 21 required variables here
-  additional_tag_map = {
+provider "aws" {
+  region = var.region
+}
 
+module "vpc" {
+  source  = "cloudposse/vpc/aws"
+  version = "0.21.1"
+
+  cidr_block = var.vpc_cidr_block
+
+  context = module.this.context
+}
+
+module "subnets" {
+  source  = "cloudposse/dynamic-subnets/aws"
+  version = "0.38.0"
+
+  availability_zones   = var.availability_zones
+  vpc_id               = module.vpc.vpc_id
+  igw_id               = module.vpc.igw_id
+  cidr_block           = module.vpc.vpc_cidr_block
+  nat_gateway_enabled  = true
+  nat_instance_enabled = false
+
+  context = module.this.context
+}
+
+module "blue_target_group_label" {
+  source  = "cloudposse/label/null"
+  version = "0.24.1"
+
+  attributes = ["blue"]
+  context    = module.this.context
+}
+
+module "green_target_group_label" {
+  source  = "cloudposse/label/null"
+  version = "0.24.1"
+
+  attributes = ["green"]
+  context    = module.this.context
+}
+
+module "alb" {
+  source  = "cloudposse/alb/aws"
+  version = "0.29.6"
+
+  vpc_id                                  = module.vpc.vpc_id
+  security_group_ids                      = [module.vpc.vpc_default_security_group_id]
+  subnet_ids                              = module.subnets.public_subnet_ids
+  internal                                = var.internal
+  http_enabled                            = var.http_enabled
+  access_logs_enabled                     = var.access_logs_enabled
+  alb_access_logs_s3_bucket_force_destroy = var.alb_access_logs_s3_bucket_force_destroy
+  cross_zone_load_balancing_enabled       = var.cross_zone_load_balancing_enabled
+  http2_enabled                           = var.http2_enabled
+  idle_timeout                            = var.idle_timeout
+  ip_address_type                         = var.ip_address_type
+  deletion_protection_enabled             = var.deletion_protection_enabled
+  deregistration_delay                    = var.deregistration_delay
+  health_check_path                       = var.health_check_path
+  health_check_port                       = var.health_check_port
+  health_check_timeout                    = var.health_check_timeout
+  health_check_healthy_threshold          = var.health_check_healthy_threshold
+  health_check_unhealthy_threshold        = var.health_check_unhealthy_threshold
+  health_check_interval                   = var.health_check_interval
+  health_check_matcher                    = var.health_check_matcher
+  target_group_port                       = var.target_group_port
+  target_group_target_type                = var.target_group_target_type
+  target_group_name                       = module.blue_target_group_label.id
+
+  context = module.this.context
+}
+
+resource "aws_lb_target_group" "green" {
+  name                 = module.green_target_group_label.id
+  port                 = var.target_group_port
+  protocol             = var.target_group_protocol
+  vpc_id               = module.vpc.vpc_id
+  target_type          = var.target_group_target_type
+  deregistration_delay = var.deregistration_delay
+
+  health_check {
+    protocol            = var.target_group_protocol
+    path                = var.health_check_path
+    port                = var.health_check_port
+    timeout             = var.health_check_timeout
+    healthy_threshold   = var.health_check_healthy_threshold
+    unhealthy_threshold = var.health_check_unhealthy_threshold
+    interval            = var.health_check_interval
+    matcher             = var.health_check_matcher
   }
-  alarm_configuration = {
-    alarms                    = var.alarm_configuration.alarms
-    ignore_poll_alarm_failure = var.alarm_configuration.ignore_poll_alarm_failure
-  }
 
-  attributes = []
+  tags = module.green_target_group_label.tags
+}
 
-  # The event type or types that trigger a rollback. Supported types are DEPLOYMENT_FAILURE and DEPLOYMENT_STOP_ON_ALARM.
-  auto_rollback_configuration_events = "DEPLOYMENT_FAILURE"
+resource "aws_ecs_cluster" "default" {
+  name = module.this.id
+  tags = module.this.tags
+}
 
-  # A list of Autoscaling Groups associated with the deployment group.
-  autoscaling_groups = []
+module "container_definition" {
+  source  = "cloudposse/ecs-container-definition/aws"
+  version = "0.51.0"
 
-  # this type is any
-  # Configuration block of the blue/green deployment options for a deployment group,
-  #see https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/codedeploy_deployment_group#blue_green_deployment_config
-  blue_green_deployment_config = []
+  container_name               = var.container_name
+  container_image              = var.container_image
+  container_memory             = var.container_memory
+  container_memory_reservation = var.container_memory_reservation
+  container_cpu                = var.container_cpu
+  essential                    = var.container_essential
+  readonly_root_filesystem     = var.container_readonly_root_filesystem
+  environment                  = var.container_environment
+  port_mappings                = var.container_port_mappings
+}
 
-  # The compute platform can either be ECS, Lambda, or Server
-  # default is ECS
-  compute_platform = "ECS"
+module "ecs_alb_service_task" {
+  source  = "cloudposse/ecs-alb-service-task/aws"
+  version = "0.54.1"
 
-  # Single object for setting entire context at once.
-  #See description of individual variables for details.
-  #Leave string and numeric variables as null to use default value.
-  #Individual variable settings (non-null) override settings in context object,
-  #except for attributes, tags, and additional_tag_map, which are merged.
-  context = {}
+  alb_security_group                 = module.vpc.vpc_default_security_group_id
+  container_definition_json          = module.container_definition.json_map_encoded_list
+  ecs_cluster_arn                    = aws_ecs_cluster.default.arn
+  launch_type                        = var.ecs_launch_type
+  vpc_id                             = module.vpc.vpc_id
+  security_group_ids                 = [module.vpc.vpc_default_security_group_id]
+  subnet_ids                         = module.subnets.public_subnet_ids
+  ignore_changes_task_definition     = var.ignore_changes_task_definition
+  network_mode                       = var.network_mode
+  assign_public_ip                   = var.assign_public_ip
+  propagate_tags                     = var.propagate_tags
+  deployment_minimum_healthy_percent = var.deployment_minimum_healthy_percent
+  deployment_maximum_percent         = var.deployment_maximum_percent
+  deployment_controller_type         = var.deployment_controller_type
+  desired_count                      = var.desired_count
+  task_memory                        = var.task_memory
+  task_cpu                           = var.task_cpu
 
-  # Whether to create default IAM role ARN that allows deployments.
-  # default is true
-  create_default_service_role = true
-
-  # Whether to create default SNS topic through which notifications are sent.
-  # default is true
-  create_default_sns_topic = true
-
-  # Delimiter to be used between ID elements.
-  # Defaults to `-` (hyphen). Set to `""` to use no delimiter at all.
-  delimiter = "-"
-
-  # Configuration of the type of deployment, either in-place or blue/green,
-  #you want to run and whether to route deployment traffic behind a load balancer.
-  #
-  #deployment_option:
-  #Indicates whether to route deployment traffic behind a load balancer.
-  #Possible values: WITH_TRAFFIC_CONTROL, WITHOUT_TRAFFIC_CONTROL.
-  #deployment_type:
-  #Indicates whether to run an in-place deployment or a blue/green deployment.
-  #Possible values: IN_PLACE, BLUE_GREEN.
-  deployment_style = {
-    deployment_option = ""
-    deployment_type = "BLUE_GREEN"
-
-  }
-
-  descriptor_formats = {
-
-  }
-
-  # The Amazon EC2 tags on which to filter. The deployment group includes EC2 instances with any of the specified tags.
-  #    Cannot be used in the same call as ec2TagSet.
-  ec2_tag_filter = []
-
-  # A list of sets of tag filters. If multiple tag groups are specified,
-  #    any instance that matches to at least one tag filter of every tag group is selected.
-  #
-  #    key:
-  #      The key of the tag filter.
-  #    type:
-  #      The type of the tag filter, either `KEY_ONLY`, `VALUE_ONLY`, or `KEY_AND_VALUE`.
-  #    value:
-  #      The value of the tag filter.
-  ec2_tag_set = []
-
-  # Configuration block(s) of the ECS services for a deployment group.
-  #
-  #cluster_name:
-  #The name of the ECS cluster.
-  #service_name:
-  #The name of the ECS service.
-  ecs_service = [
+  ecs_load_balancers = [
     {
-      cluster_name = ""
-      service_name = ""
+      container_name   = var.container_name
+      container_port   = 80
+      elb_name         = null
+      target_group_arn = module.alb.default_target_group_arn
     }
   ]
 
-  # Set to false to prevent the module from creating any resources
-  enabled = false
+  context = module.this.context
 
-  # ID element. Usually used for region e.g. 'uw2', 'us-west-2', OR role 'prod', 'staging', 'dev', 'UAT'"
-  environment = ""
+  depends_on = [
+    module.alb
+  ]
+}
 
-  # Controls the letter case of the `tags` keys (label names) for tags generated by this module.
-  #    Does not affect keys of tags passed in via the `tags` input.
-  #    Possible values: `lower`, `title`, `upper`.
-  #    Default value: `title`.
-  label_key_case = ""
+module "code_deploy_blue_green" {
+  source  = "cloudposse/code-deploy/aws"
+  version = "0.2.3"
+  context = module.this.context
 
-  label_order = []
+  minimum_healthy_hosts = null
 
-  # Controls the letter case of ID elements (labels) as included in `id`,
-  #    set as tag values, and output by this module individually.
-  #    Does not affect values of tags passed in via the `tags` input.
-  #    Possible values: `lower`, `title`, `upper` and `none` (no transformation).
-  #    Set this to `title` and set `delimiter` to `""` to yield Pascal Case IDs.
-  #    Default value: `lower`.
-  label_value_case = ""
+  traffic_routing_config = {
+    type       = "TimeBasedLinear"
+    interval   = 10
+    percentage = 10
+  }
 
-  labels_as_tags = []
+  deployment_style = {
+    deployment_option = "WITH_TRAFFIC_CONTROL"
+    deployment_type   = "BLUE_GREEN"
+  }
 
-  load_balancer_info = {}
+  blue_green_deployment_config = {
+    deployment_ready_option = {
+      action_on_timeout    = "STOP_DEPLOYMENT"
+      wait_time_in_minutes = 10
+    }
+    terminate_blue_instances_on_deployment_success = {
+      action                           = "TERMINATE"
+      termination_wait_time_in_minutes = 5
+    }
+  }
 
-  # type:
-  #The type can either be FLEET_PERCENT or HOST_COUNT.
-  #value:
-  #The value when the type is FLEET_PERCENT represents the minimum number of healthy instances
-  #as a percentage of the total number of instances in the deployment.
-  #When the type is HOST_COUNT, the value represents the minimum number of healthy instances as an absolute value.
-  minimum_healthy_hosts = []
+  ecs_service = [
+    {
+      cluster_name = aws_ecs_cluster.default.name
+      service_name = module.ecs_alb_service_task.service_name
+    }
+  ]
 
-  # ID element. Usually the component or solution name, e.g. 'app' or 'jenkins'.
-  #This is the only ID element not also included as a tag.
-  #The "name" tag is set to the full id string. There is no tag with the value of the name input.
-  name = ""
-
-  # ID element. Usually an abbreviation of your organization name, e.g. 'eg' or 'cp', to help ensure generated IDs are globally unique
-  namespace = ""
-
-  # Terraform regular expression (regex) string.
-  #Characters matching the regex will be removed from the ID elements.
-  #If not set, "/[^a-zA-Z0-9-]/" is used to remove all characters other than hyphens, letters and digits.
-  regex_replace_chars = ""
-
-  # The service IAM role ARN that allows deployments.
-  service_role_arn = ""
-
-  # The ARN of the SNS topic through which notifications are sent.
-  sns_topic_arn = ""
-
-#   ID element. Usually used to indicate role, e.g. 'prod', 'staging', 'source', 'build', 'test', 'deploy', 'release'
-  stage = ""
-
-  # Additional tags (e.g. {'BusinessUnit': 'XYZ'}).
-  #Neither the tag keys nor the tag values will be modified by this module.
-  tags = {}
-
-  # ID element _(Rarely used, not included by default)_. A customer identifier, indicating who this instance of a resource is for"
-  tenant = ""
-
-  traffic_routing_config = ()
-
-  trigger_events = []
-
-
+  load_balancer_info = {
+    target_group_pair_info = {
+      prod_traffic_route = {
+        listener_arns = [module.alb.http_listener_arn]
+      }
+      blue_target_group = {
+        name = module.alb.default_target_group_arn
+      }
+      green_target_group = {
+        name = aws_lb_target_group.green.arn
+      }
+    }
+  }
 }
