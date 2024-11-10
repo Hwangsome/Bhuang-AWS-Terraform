@@ -123,13 +123,13 @@ variable "network_mode" {
 variable "task_cpu" {
   type        = number
   description = "The number of CPU units used by the task. If using `FARGATE` launch type `task_cpu` must match [supported memory values](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size)"
-  default     = 256
+  default     = 1024
 }
 
 variable "task_memory" {
   type        = number
   description = "The amount of memory (in MiB) used by the task. If using Fargate launch type `task_memory` must match [supported cpu value](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#task_size)"
-  default     = 512
+  default     = 2048
 }
 
 variable "task_exec_role_arn" {
@@ -315,11 +315,6 @@ variable "wait_for_steady_state" {
   default     = false
 }
 
-variable "task_definition" {
-  type        = string
-  description = "Reuse an existing task definition family and revision for the ecs service instead of creating one"
-  default     = null
-}
 
 variable "random_id" {
   type    = string

@@ -21,8 +21,7 @@
 #
 
 module "this" {
-  source  = "cloudposse/label/null"
-  version = "0.25.0" # requires Terraform >= 0.13.0
+  source  = "../code_build_lable"
 
   enabled             = var.enabled
   namespace           = var.namespace
