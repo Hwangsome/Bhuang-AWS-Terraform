@@ -169,6 +169,14 @@ variable "artifact_location" {
   description = "Location of artifact. Applies only for artifact of type S3"
 }
 
+variable "artifact_folder" {
+  type        = string
+  default     = ""
+  description = "s3 folder"
+}
+
+
+
 variable "secondary_artifact_location" {
   type        = string
   default     = null

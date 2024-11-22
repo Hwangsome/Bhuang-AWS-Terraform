@@ -1,0 +1,101 @@
+{
+    "tasks": [
+        {
+            "attachments": [
+                {
+                    "id": "8b7895d8-260a-48dd-88ae-dd97d7c4da92",
+                    "type": "ElasticNetworkInterface",
+                    "status": "ATTACHED",
+                    "details": [
+                        {
+                            "name": "subnetId",
+                            "value": "subnet-03f3d4ef1c7967356"
+                        },
+                        {
+                            "name": "networkInterfaceId",
+                            "value": "eni-08cf6a4205a69a8b0"
+                        },
+                        {
+                            "name": "macAddress",
+                            "value": "0e:d3:ba:3c:af:d9"
+                        },
+                        {
+                            "name": "privateDnsName",
+                            "value": "ip-172-31-41-68.ec2.internal"
+                        },
+                        {
+                            "name": "privateIPv4Address",
+                            "value": "172.31.41.68"
+                        }
+                    ]
+                }
+            ],
+            "attributes": [
+                {
+                    "name": "ecs.cpu-architecture",
+                    "value": "x86_64"
+                }
+            ],
+            "availabilityZone": "us-east-1a",
+            "clusterArn": "arn:aws:ecs:us-east-1:058264261029:cluster/terraform-cluster",
+            "connectivity": "CONNECTED",
+            "connectivityAt": "2024-11-17T11:05:28.783000+08:00",
+            "containers": [
+                {
+                    "containerArn": "arn:aws:ecs:us-east-1:058264261029:container/terraform-cluster/67c215ffe3d54cf7b94c9f59812e3687/cbfcddbf-e156-4403-b607-a1633dd48d9f",
+                    "taskArn": "arn:aws:ecs:us-east-1:058264261029:task/terraform-cluster/67c215ffe3d54cf7b94c9f59812e3687",
+                    "name": "terraform-ecs-container",
+                    "image": "058264261029.dkr.ecr.us-east-1.amazonaws.com/bhuang-devops/go-simplehttp-blue-green:6243bca1f0e327ace7f1b2e98d21f7387d993edc",
+                    "imageDigest": "sha256:ca4f43898b1be7eb0de41c895f2c1e82d77390563353205c174bbdc124a0dc30",
+                    "runtimeId": "67c215ffe3d54cf7b94c9f59812e3687-0981242517",
+                    "lastStatus": "RUNNING",
+                    "networkBindings": [],
+                    "networkInterfaces": [
+                        {
+                            "attachmentId": "8b7895d8-260a-48dd-88ae-dd97d7c4da92",
+                            "privateIpv4Address": "172.31.41.68"
+                        }
+                    ],
+                    "healthStatus": "UNKNOWN",
+                    "cpu": "512",
+                    "memory": "1024",
+                    "memoryReservation": "100"
+                }
+            ],
+            "cpu": "1024",
+            "createdAt": "2024-11-17T11:05:24.980000+08:00",
+            "desiredStatus": "RUNNING",
+            "enableExecuteCommand": false,
+            "group": "service:test",
+            "healthStatus": "UNKNOWN",
+            "lastStatus": "RUNNING",
+            "launchType": "FARGATE",
+            "memory": "2048",
+            "overrides": {
+                "containerOverrides": [
+                    {
+                        "name": "terraform-ecs-container"
+                    }
+                ],
+                "inferenceAcceleratorOverrides": []
+            },
+            "platformVersion": "1.4.0",
+            "platformFamily": "Linux",
+            "pullStartedAt": "2024-11-17T11:05:37.624000+08:00",
+            "pullStoppedAt": "2024-11-17T11:05:39.526000+08:00",
+            "startedAt": "2024-11-17T11:05:48.776000+08:00",
+            "startedBy": "ecs-svc/0001950034789980980",
+            "tags": [],
+            "taskArn": "arn:aws:ecs:us-east-1:058264261029:task/terraform-cluster/67c215ffe3d54cf7b94c9f59812e3687",
+            "taskDefinitionArn": "arn:aws:ecs:us-east-1:058264261029:task-definition/terraform-test-task-definition:3",
+            "version": 6,
+            "ephemeralStorage": {
+                "sizeInGiB": 20
+            },
+            "fargateEphemeralStorage": {
+                "sizeInGiB": 20
+            }
+        }
+    ],
+    "failures": []
+}

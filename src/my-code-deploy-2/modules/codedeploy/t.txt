@@ -1,0 +1,84 @@
+{
+    "deploymentGroupInfo": {
+        "applicationName": "inventory-pipeline-sandbox",
+        "deploymentGroupId": "94279bce-1ad7-4989-9d69-cc8798c6d488",
+        "deploymentGroupName": "inventory-pipeline-sandbox",
+        "deploymentConfigName": "CodeDeployDefault.ECSCanary10Percent5Minutes",
+        "ec2TagFilters": [],
+        "onPremisesInstanceTagFilters": [],
+        "autoScalingGroups": [],
+        "serviceRoleArn": "arn:aws:iam::971779422973:role/inventory-pipeline-sandbox-cd-role",
+        "targetRevision": {
+            "revisionType": "String",
+            "string": {
+                "sha256": "a709102b40a5f0196cce0ea65f79ec540aa6e5d6f1a5112e472d62a60df5436f"
+            }
+        },
+        "triggerConfigurations": [],
+        "alarmConfiguration": {
+            "enabled": false,
+            "ignorePollAlarmFailure": false,
+            "alarms": []
+        },
+        "autoRollbackConfiguration": {
+            "enabled": true,
+            "events": [
+                "DEPLOYMENT_FAILURE"
+            ]
+        },
+        "deploymentStyle": {
+            "deploymentType": "BLUE_GREEN",
+            "deploymentOption": "WITH_TRAFFIC_CONTROL"
+        },
+        "outdatedInstancesStrategy": "UPDATE",
+        "blueGreenDeploymentConfiguration": {
+            "terminateBlueInstancesOnDeploymentSuccess": {
+                "action": "TERMINATE",
+                "terminationWaitTimeInMinutes": 10
+            },
+            "deploymentReadyOption": {
+                "actionOnTimeout": "CONTINUE_DEPLOYMENT",
+                "waitTimeInMinutes": 0
+            }
+        },
+        "loadBalancerInfo": {
+            "targetGroupPairInfoList": [
+                {
+                    "targetGroups": [
+                        {
+                            "name": "inventory-pipeline-sandbox-bl"
+                        },
+                        {
+                            "name": "inventory-pipeline-sandbox-gr"
+                        }
+                    ],
+                    "prodTrafficRoute": {
+                        "listenerArns": [
+                            "arn:aws:elasticloadbalancing:us-west-2:971779422973:listener/app/inventory-pipeline-sandbox-lb/c2bf9a0f3f47af4a/7d968e3e8e8f1b7e"
+                        ]
+                    }
+                }
+            ]
+        },
+        "lastSuccessfulDeployment": {
+            "deploymentId": "d-I8XV547O8",
+            "status": "Succeeded",
+            "endTime": "2024-11-12T16:48:07.468000+08:00",
+            "createTime": "2024-11-12T16:35:17.142000+08:00"
+        },
+        "lastAttemptedDeployment": {
+            "deploymentId": "d-I8XV547O8",
+            "status": "Succeeded",
+            "endTime": "2024-11-12T16:48:07.468000+08:00",
+            "createTime": "2024-11-12T16:35:17.142000+08:00"
+        },
+        "computePlatform": "ECS",
+        "ecsServices": [
+            {
+                "serviceName": "inventory-pipeline-sandbox_service",
+                "clusterName": "inventory-main"
+            }
+        ],
+        "terminationHookEnabled": false
+    }
+}

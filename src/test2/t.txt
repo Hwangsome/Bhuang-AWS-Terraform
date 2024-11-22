@@ -1,0 +1,17 @@
+{
+    "capacityProviders": [
+        {
+            "capacityProviderArn": "arn:aws:ecs:us-west-2:058264261029:capacity-provider/FARGATE",
+            "name": "FARGATE",
+            "status": "ACTIVE",
+            "tags": []
+        },
+        {
+            "capacityProviderArn": "arn:aws:ecs:us-west-2:058264261029:capacity-provider/FARGATE_SPOT",
+            "name": "FARGATE_SPOT",
+            "status": "ACTIVE",
+            "tags": []
+        }
+    ],
+    "failures": []
+}

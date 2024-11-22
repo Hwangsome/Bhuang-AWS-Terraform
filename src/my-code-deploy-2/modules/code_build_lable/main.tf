@@ -98,6 +98,7 @@ locals {
 
   delimiter        = local.input.delimiter == null ? local.defaults.delimiter : local.input.delimiter
   label_order      = local.input.label_order == null ? local.defaults.label_order : coalescelist(local.input.label_order, local.defaults.label_order)
+#  检查input 中是否有设置 id_length_limit 的值， 没有的话就使用defaults 中 id_length_limit =0  的值
   id_length_limit  = local.input.id_length_limit == null ? local.defaults.id_length_limit : local.input.id_length_limit
   label_key_case   = local.input.label_key_case == null ? local.defaults.label_key_case : local.input.label_key_case
   label_value_case = local.input.label_value_case == null ? local.defaults.label_value_case : local.input.label_value_case

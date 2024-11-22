@@ -37,3 +37,7 @@ output "project_arn" {
   description = "Project ARN"
   value       = join("", aws_codebuild_project.default[*].arn)
 }
+
+output "moduleid" {
+  value = module.this.id
+}

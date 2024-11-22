@@ -1,0 +1,103 @@
+{
+    "tasks": [
+        {
+            "attachments": [
+                {
+                    "id": "200166f3-a2cb-4817-a2a0-71b48ec3870a",
+                    "type": "ElasticNetworkInterface",
+                    "status": "DELETED",
+                    "details": [
+                        {
+                            "name": "subnetId",
+                            "value": "subnet-0976cd1580502bd90"
+                        },
+                        {
+                            "name": "networkInterfaceId",
+                            "value": "eni-0087fde08f7223c19"
+                        },
+                        {
+                            "name": "macAddress",
+                            "value": "0a:ff:dd:7b:1e:63"
+                        },
+                        {
+                            "name": "privateDnsName",
+                            "value": "ip-172-31-28-129.ec2.internal"
+                        },
+                        {
+                            "name": "privateIPv4Address",
+                            "value": "172.31.28.129"
+                        }
+                    ]
+                }
+            ],
+            "attributes": [
+                {
+                    "name": "ecs.cpu-architecture",
+                    "value": "x86_64"
+                }
+            ],
+            "availabilityZone": "us-east-1d",
+            "clusterArn": "arn:aws:ecs:us-east-1:058264261029:cluster/terraform-cluster",
+            "connectivity": "CONNECTED",
+            "connectivityAt": "2024-11-17T11:07:54.133000+08:00",
+            "containers": [
+                {
+                    "containerArn": "arn:aws:ecs:us-east-1:058264261029:container/terraform-cluster/603a3e7de1c748cba0b5bb3ba08f070b/de601148-77fb-4dc6-b1b2-5ae0e2927229",
+                    "taskArn": "arn:aws:ecs:us-east-1:058264261029:task/terraform-cluster/603a3e7de1c748cba0b5bb3ba08f070b",
+                    "name": "terraform-ecs-container",
+                    "image": "058264261029.dkr.ecr.us-east-1.amazonaws.com/bhuang-devops/go-simplehttp-blue-green:6243bca1f0e327ace7f1b2e98d21f7387d993edc",
+                    "runtimeId": "603a3e7de1c748cba0b5bb3ba08f070b-0981242517",
+                    "lastStatus": "STOPPED",
+                    "networkInterfaces": [
+                        {
+                            "attachmentId": "200166f3-a2cb-4817-a2a0-71b48ec3870a",
+                            "privateIpv4Address": "172.31.28.129"
+                        }
+                    ],
+                    "healthStatus": "UNKNOWN",
+                    "cpu": "512",
+                    "memory": "1024",
+                    "memoryReservation": "100"
+                }
+            ],
+            "cpu": "1024",
+            "createdAt": "2024-11-17T11:07:50.011000+08:00",
+            "desiredStatus": "STOPPED",
+            "enableExecuteCommand": false,
+            "executionStoppedAt": "2024-11-17T11:09:56.810000+08:00",
+            "group": "service:terraform-test-task-definition",
+            "healthStatus": "UNKNOWN",
+            "lastStatus": "STOPPED",
+            "launchType": "FARGATE",
+            "memory": "2048",
+            "overrides": {
+                "containerOverrides": [
+                    {
+                        "name": "terraform-ecs-container"
+                    }
+                ],
+                "inferenceAcceleratorOverrides": []
+            },
+            "platformVersion": "1.4.0",
+            "platformFamily": "Linux",
+            "pullStartedAt": "2024-11-17T11:08:01.491000+08:00",
+            "pullStoppedAt": "2024-11-17T11:08:01.497000+08:00",
+            "startedBy": "ecs-svc/8063323505763402121",
+            "stopCode": "TaskFailedToStart",
+            "stoppedAt": "2024-11-17T11:10:40.379000+08:00",
+            "stoppedReason": "ResourceInitializationError: unable to pull secrets or registry auth: The task cannot pull registry auth from Amazon ECR: There is a connection issue between the task and Amazon ECR. Check your task network configuration. RequestError: send request failed caused by: Post \"https://api.ecr.us-east-1.amazonaws.com/\": dial tcp 44.213.79.114:443: i/o timeout",
+            "stoppingAt": "2024-11-17T11:10:06.849000+08:00",
+            "tags": [],
+            "taskArn": "arn:aws:ecs:us-east-1:058264261029:task/terraform-cluster/603a3e7de1c748cba0b5bb3ba08f070b",
+            "taskDefinitionArn": "arn:aws:ecs:us-east-1:058264261029:task-definition/terraform-test-task-definition:3",
+            "version": 5,
+            "ephemeralStorage": {
+                "sizeInGiB": 20
+            },
+            "fargateEphemeralStorage": {
+                "sizeInGiB": 20
+            }
+        }
+    ],
+    "failures": []
+}
